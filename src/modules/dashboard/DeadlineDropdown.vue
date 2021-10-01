@@ -1,6 +1,6 @@
 <template>
    <Popover class="relative" v-slot="{ open }">
-      <PopoverButton class="w-full">
+      <PopoverButton class="md:w-full">
          <slot></slot>
       </PopoverButton>
 
