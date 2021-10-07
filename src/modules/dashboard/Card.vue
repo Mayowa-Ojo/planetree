@@ -29,8 +29,8 @@
       </div>
 
       <div class="flex flex-col items-start">
-         <p class="text-xs font-semibold text-gray-700 text-left" v-if="!!data.title">{{data.title}}</p>
-         <p class="text-xs font-normal text-gray-400 text-left mt-0.5" v-if="!!data.description">{{data.description}}</p>
+         <p class="text-xs font-semibold text-gray-700 text-left w-full truncate " v-if="!!data.title">{{data.title}}</p>
+         <p class="text-xs font-normal text-gray-400 text-left mt-0.5 w-full truncate ..." v-if="!!data.description">{{data.description}}</p>
       </div>
 
       <div class="flex items-center space-x-2" v-if="!!data.due">
