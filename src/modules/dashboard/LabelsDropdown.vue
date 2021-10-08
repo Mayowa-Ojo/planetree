@@ -37,54 +37,54 @@
             <RadioGroup class="" v-model="labels">
                <div class="space-y-2 px-3">
                   <RadioGroupOption v-slot="{ checked }" value="design">
-                     <button :class="[checked ? 'bg-blue-400' : 'bg-gray-100', 'group flex items-center space-x-2 w-full h-8 px-2.5 rounded-md hover:bg-gray-200 focus:bg-gray-200 focus:outline-none']">
+                     <PopoverButton as="button" :class="[checked ? 'bg-blue-400' : 'bg-gray-100', 'group flex items-center space-x-2 w-full h-8 px-2.5 rounded-md hover:bg-gray-200 focus:bg-gray-200 focus:outline-none']">
                         <span
                            class="inline-block w-2 h-2 rounded-full group-hover:bg-blue-400 group-focus:bg-blue-400"
                            :class="checked ? 'bg-white' : 'bg-blue-400'"
                         >
                         </span>
                         <span class="lg:text-xs text-[11px] font-medium capitalize group-hover:text-gray-600 group-focus:text-gray-600" :class="checked ? 'text-white' : 'text-gray-600'">design</span>
-                     </button>
+                     </PopoverButton>
                   </RadioGroupOption>
                   <RadioGroupOption v-slot="{ checked }" value="research">
-                     <button :class="[checked ? 'bg-pink-400' : 'bg-gray-100', 'group flex items-center space-x-2 w-full h-8 px-2.5 rounded-md hover:bg-gray-200 focus:bg-gray-200 focus:outline-none']">
+                     <PopoverButton as="button" :class="[checked ? 'bg-pink-400' : 'bg-gray-100', 'group flex items-center space-x-2 w-full h-8 px-2.5 rounded-md hover:bg-gray-200 focus:bg-gray-200 focus:outline-none']">
                         <span
                            class="inline-block w-2 h-2 rounded-full group-hover:bg-pink-400 group-focus:bg-pink-400"
                            :class="checked ? 'bg-white' : 'bg-pink-400'"
                         >
                         </span>
                         <span class="lg:text-xs text-[11px] font-medium capitalize group-hover:text-gray-600 group-focus:text-gray-600" :class="checked ? 'text-white' : 'text-gray-600'">research</span>
-                     </button>
+                     </PopoverButton>
                   </RadioGroupOption>
                   <RadioGroupOption v-slot="{ checked }" value="planning">
-                     <button :class="[checked ? 'bg-green-400' : 'bg-gray-100', 'group flex items-center space-x-2 w-full h-8 px-2.5 rounded-md hover:bg-gray-200 focus:bg-gray-200 focus:outline-none']">
+                     <PopoverButton as="button" :class="[checked ? 'bg-green-400' : 'bg-gray-100', 'group flex items-center space-x-2 w-full h-8 px-2.5 rounded-md hover:bg-gray-200 focus:bg-gray-200 focus:outline-none']">
                         <span
                            class="inline-block w-2 h-2 rounded-full group-hover:bg-green-400 group-focus:bg-green-400"
                            :class="checked ? 'bg-white' : 'bg-green-400'"
                         >
                         </span>
                         <span class="lg:text-xs text-[11px] font-medium capitalize group-hover:text-gray-600 group-focus:text-gray-600" :class="checked ? 'text-white' : 'text-gray-600'">planning</span>
-                     </button>
+                     </PopoverButton>
                   </RadioGroupOption>
                   <RadioGroupOption v-slot="{ checked }" value="content">
-                     <button :class="[checked ? 'bg-yellow-400' : 'bg-gray-100', 'group flex items-center space-x-2 w-full h-8 px-2.5 rounded-md hover:bg-gray-200 focus:bg-gray-200 focus:outline-none']">
+                     <PopoverButton as="button" :class="[checked ? 'bg-yellow-400' : 'bg-gray-100', 'group flex items-center space-x-2 w-full h-8 px-2.5 rounded-md hover:bg-gray-200 focus:bg-gray-200 focus:outline-none']">
                         <span
                            class="inline-block w-2 h-2 rounded-full group-hover:bg-yellow-400 group-focus:bg-yellow-400"
                            :class="checked ? 'bg-white' : 'bg-yellow-400'"
                         >
                         </span>
                         <span class="lg:text-xs text-[11px] font-medium capitalize group-hover:text-gray-600 group-focus:text-gray-600" :class="checked ? 'text-white' : 'text-gray-600'">content</span>
-                     </button>
+                     </PopoverButton>
                   </RadioGroupOption>
                   <RadioGroupOption v-slot="{ checked }" value="dev">
-                     <button :class="[checked ? 'bg-red-400' : 'bg-gray-100', 'group flex items-center space-x-2 w-full h-8 px-2.5 rounded-md hover:bg-gray-200 focus:bg-gray-200 focus:outline-none']">
+                     <PopoverButton as="button" :class="[checked ? 'bg-red-400' : 'bg-gray-100', 'group flex items-center space-x-2 w-full h-8 px-2.5 rounded-md hover:bg-gray-200 focus:bg-gray-200 focus:outline-none']">
                         <span
                            class="inline-block w-2 h-2 rounded-full group-hover:bg-red-400 group-focus:bg-red-400"
                            :class="checked ? 'bg-white' : 'bg-red-400'"
                         >
                         </span>
                         <span class="lg:text-xs text-[11px] font-medium capitalize group-hover:text-gray-600 group-focus:text-gray-600" :class="checked ? 'text-white' : 'text-gray-600'">dev</span>
-                     </button>
+                     </PopoverButton>
                   </RadioGroupOption>
                </div>
             </RadioGroup>
@@ -113,9 +113,17 @@ export default {
 
 <script setup>
 import { Popover , PopoverButton, PopoverPanel, RadioGroup, RadioGroupOption } from "@headlessui/vue";
-import { ref } from "vue";
+import { ref, watch, getCurrentInstance, defineEmits } from "vue";
+
+defineEmits(["updateLabel"])
+
+const { emit } = getCurrentInstance();
 
 const labels = ref("design");
+
+watch(labels, (val) => {
+   emit("updateLabel", val);
+});
 </script>
 
 <style lang="scss" scoped></style>
